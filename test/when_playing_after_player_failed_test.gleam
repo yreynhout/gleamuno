@@ -30,11 +30,7 @@ pub fn after_wrong_card_still_players_turn_test() {
         Digit(Nine, Red),
         player_id.from_int(3),
       ),
-      PlayerPlayedWrongCard(
-        game_id,
-        player_id.from_int(3),
-        Digit(Seven, Green),
-      ),
+      PlayerPlayedWrongCard(game_id, player_id.from_int(3), Digit(Seven, Green)),
     ],
     when: PlayCard(game_id, player_id.from_int(3), Digit(Nine, Green)),
     then: Ok([

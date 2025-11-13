@@ -132,7 +132,10 @@ pub fn game(seed: Seed) -> Decider(Command, State, Event, Error) {
     evolve: fn(state, event) {
       case state, event {
         _, GameStarted(_, player_count, first_card, first_player) ->
-          Started(turn.start_with_player(player_count, first_player), first_card)
+          Started(
+            turn.start_with_player(player_count, first_player),
+            first_card,
+          )
         Started(turn, _), CardPlayed(_, _, card, next_player) ->
           Started(turn |> turn.with_player(next_player), card)
         Started(turn, top_card), DirectionChanged(_, direction) ->

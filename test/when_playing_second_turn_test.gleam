@@ -137,11 +137,7 @@ pub fn playing_at_wrong_turn_is_rejected_test() {
     ],
     when: PlayCard(game_id, player_id.from_int(4), Digit(Eight, Red)),
     then: Ok([
-      PlayerPlayedAtWrongTurn(
-        game_id,
-        player_id.from_int(4),
-        Digit(Eight, Red),
-      ),
+      PlayerPlayedAtWrongTurn(game_id, player_id.from_int(4), Digit(Eight, Red)),
     ]),
   )
   |> verify(game_decider)

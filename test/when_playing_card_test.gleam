@@ -115,11 +115,7 @@ pub fn wrong_turn_is_rejected_test() {
     ],
     when: PlayCard(game_id, player_id.from_int(3), Digit(Eight, Red)),
     then: Ok([
-      PlayerPlayedAtWrongTurn(
-        game_id,
-        player_id.from_int(3),
-        Digit(Eight, Red),
-      ),
+      PlayerPlayedAtWrongTurn(game_id, player_id.from_int(3), Digit(Eight, Red)),
     ]),
   )
   |> verify(game_decider)
@@ -134,12 +130,7 @@ pub fn kickback_reverses_direction_test() {
   Scenario(
     name: "When starting with kickback, next player is in reverse direction",
     given: [
-      GameStarted(
-        game_id,
-        player_count,
-        KickBack(Red),
-        player_id.from_int(2),
-      ),
+      GameStarted(game_id, player_count, KickBack(Red), player_id.from_int(2)),
       DirectionChanged(game_id, CounterClockWise),
     ],
     when: PlayCard(game_id, player_id.from_int(2), Digit(Nine, Red)),

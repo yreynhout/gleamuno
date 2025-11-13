@@ -1,6 +1,4 @@
-import deck.{
-  CounterClockWise, Digit, Eight, Green, KickBack, Nine, Red, Skip,
-}
+import deck.{CounterClockWise, Digit, Eight, Green, KickBack, Nine, Red, Skip}
 import game.{
   CardPlayed, DirectionChanged, GameStarted, PlayCard, PlayerPlayedAtWrongTurn,
   game,
@@ -35,7 +33,12 @@ pub fn skip_skips_next_player_test() {
     ],
     when: PlayCard(game_id, player_id.from_int(3), Skip(Red)),
     then: Ok([
-      CardPlayed(game_id, player_id.from_int(3), Skip(Red), player_id.from_int(1)),
+      CardPlayed(
+        game_id,
+        player_id.from_int(3),
+        Skip(Red),
+        player_id.from_int(1),
+      ),
     ]),
   )
   |> verify(game_decider)
@@ -62,15 +65,16 @@ pub fn skipped_player_cannot_play_test() {
         Digit(Nine, Red),
         player_id.from_int(3),
       ),
-      CardPlayed(game_id, player_id.from_int(3), Skip(Red), player_id.from_int(1)),
+      CardPlayed(
+        game_id,
+        player_id.from_int(3),
+        Skip(Red),
+        player_id.from_int(1),
+      ),
     ],
     when: PlayCard(game_id, player_id.from_int(4), Digit(Eight, Red)),
     then: Ok([
-      PlayerPlayedAtWrongTurn(
-        game_id,
-        player_id.from_int(4),
-        Digit(Eight, Red),
-      ),
+      PlayerPlayedAtWrongTurn(game_id, player_id.from_int(4), Digit(Eight, Red)),
     ]),
   )
   |> verify(game_decider)
@@ -97,7 +101,12 @@ pub fn player_after_skip_can_play_test() {
         Digit(Nine, Red),
         player_id.from_int(3),
       ),
-      CardPlayed(game_id, player_id.from_int(3), Skip(Red), player_id.from_int(1)),
+      CardPlayed(
+        game_id,
+        player_id.from_int(3),
+        Skip(Red),
+        player_id.from_int(1),
+      ),
     ],
     when: PlayCard(game_id, player_id.from_int(1), Digit(Eight, Red)),
     then: Ok([
@@ -143,7 +152,12 @@ pub fn skip_works_counterclockwise_test() {
     ],
     when: PlayCard(game_id, player_id.from_int(2), Skip(Green)),
     then: Ok([
-      CardPlayed(game_id, player_id.from_int(2), Skip(Green), player_id.from_int(4)),
+      CardPlayed(
+        game_id,
+        player_id.from_int(2),
+        Skip(Green),
+        player_id.from_int(4),
+      ),
     ]),
   )
   |> verify(game_decider)
